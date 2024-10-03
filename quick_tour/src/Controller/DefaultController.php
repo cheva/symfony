@@ -2,6 +2,7 @@
 // src/Controller/DefaultController.php
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +15,7 @@ class DefaultController extends AbstractController
     {
         return new Response("Hello!");
     }
+
     #[Route('/hello/{name}', methods: ['GET'])]
     public function hello(string $name): Response
     {
@@ -21,9 +23,11 @@ class DefaultController extends AbstractController
             'name' => $name,
         ]);
     }
+
     #[Route('/api/hello/{name}', methods: ['GET'])]
-    public function apiHello(string $name): JsonResponse
+    public function apiHello(string $name, LoggerInterface $logger): JsonResponse
     {
+        $logger->info("Saying hello to $name!");
         return $this->json([
             'name' => $name,
             'symfony' => 'rocks',
