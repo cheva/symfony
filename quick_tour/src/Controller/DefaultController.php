@@ -2,6 +2,7 @@
 // src/Controller/DefaultController.php
 namespace App\Controller;
 
+use App\GreetingGenerator;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -25,12 +26,13 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/api/hello/{name}', methods: ['GET'])]
-    public function apiHello(string $name, LoggerInterface $logger): JsonResponse
+    public function apiHello(string $name, LoggerInterface $logger, GreetingGenerator $generator): JsonResponse
     {
-        $logger->info("Saying hello to $name!");
+        $greeting = $generator->getRandomGreeting();
+        $logger->info("Saying $greeting to $name!");
         return $this->json([
+            'hello' => $greeting,
             'name' => $name,
-            'symfony' => 'rocks',
         ]);
     }
 }
