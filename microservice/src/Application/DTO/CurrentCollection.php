@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\Repository;
+namespace App\Application\DTO;
 
-class CurrentCollectionRepository implements CollectionInterface
+class CurrentCollection implements CollectionInterface
 {
 
     private ?string $name;
