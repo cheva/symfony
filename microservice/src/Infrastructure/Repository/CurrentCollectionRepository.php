@@ -5,13 +5,13 @@ namespace App\Infrastructure\Repository;
 class CurrentCollectionRepository implements CollectionInterface
 {
 
-    private string $name;
-    private array $words;
-    private int $count;
-    private int $finished;
-    private int $tries;
-    private int $errors;
-    private float $time;
+    private ?string $name;
+    private ?array $words;
+    private ?int $count;
+    private ?int $finished;
+    private ?int $tries;
+    private ?int $errors;
+    private ?float $time;
 
     public function getName(): string
     {
