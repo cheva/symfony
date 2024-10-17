@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
-class First
+class FirstController
 {
     #[Route('/first/{query}', name: 'first', methods: 'POST')]
     public function synonyms(Request $request, string $query): \Symfony\Component\HttpFoundation\Response
