@@ -6,10 +6,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
-class WordsController
+class First
 {
-    #[Route('/words/{word}/synonyms', name: 'synonyms', methods: 'POST')]
-    public function synonyms(Request $request, string $word): \Symfony\Component\HttpFoundation\Response
+    #[Route('/first/{query}', name: 'first', methods: 'POST')]
+    public function synonyms(Request $request, string $query): \Symfony\Component\HttpFoundation\Response
     {
         if ($request->headers->has('force_fail')) {
             return new JsonResponse([
@@ -19,7 +19,7 @@ class WordsController
         }
 
         return new JsonResponse([
-            'word' => $word,
+            'query' => $query,
         ], 200);
     }
 }
